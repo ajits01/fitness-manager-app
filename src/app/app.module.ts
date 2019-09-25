@@ -12,7 +12,7 @@ import { AppComponent } from './containers/app/app.component';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, AuthModule],
+  imports: [BrowserModule, AuthModule, AppRoutingModule],
   providers: [Store],
   bootstrap: [AppComponent]
 })
