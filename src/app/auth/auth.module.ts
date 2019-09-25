@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginModule } from './login/login.module';
-import { RegisterModule } from './register/register.module';
 import { SharedModule } from './shared/shared.module';
 
 export const ROUTES: Routes = [
@@ -25,12 +23,6 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(ROUTES),
-    LoginModule,
-    RegisterModule,
-    SharedModule
-  ]
+  imports: [CommonModule, RouterModule.forChild(ROUTES), SharedModule]
 })
 export class AuthModule {}
