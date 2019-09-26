@@ -1,5 +1,6 @@
 <div>
-  <h1>{{ user$ | async | json }}</h1>
+  <fma-header (logout)="onLogout()" [user]="user$ | async"></fma-header>
+  <fma-nav *ngIf="(user$ | async)?.authenticated"></fma-nav>
   <div class="wrapper">
     <router-outlet></router-outlet>
   </div>

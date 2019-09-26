@@ -30,14 +30,14 @@ export const ROUTES: Routes = [
 ];
 
 export const firebaseConfig: FirebaseAppConfig = {
-  apiKey: '',
+  apiKey: 'AIzaSyBROiF0xPC3sn3jX954wZWp-cu-QWT_rj0',
   authDomain: 'fitness-manager-app-8d32f.firebaseapp.com',
   databaseURL: 'https://fitness-manager-app-8d32f.firebaseio.com',
   projectId: 'fitness-manager-app-8d32f',
   storageBucket: '',
-  messagingSenderId: '',
-  appId: '',
-  measurementId: ''
+  messagingSenderId: '996553473573',
+  appId: '1:996553473573:web:72b782ac1f09a26a4d09cc',
+  measurementId: 'G-150C5SLFFZ'
 };
 
 @NgModule({
