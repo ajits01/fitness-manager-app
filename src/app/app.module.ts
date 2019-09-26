@@ -9,9 +9,11 @@ import { AuthModule } from './auth/auth.module';
 
 // Containers
 import { AppComponent } from './containers/app/app.component';
+import { FmaHeaderComponent } from './components/fma-header/fma-header.component';
+import { FmaNavComponent } from './components/fma-nav/fma-nav.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FmaHeaderComponent, FmaNavComponent],
   imports: [BrowserModule, AuthModule, AppRoutingModule],
   providers: [Store],
   bootstrap: [AppComponent]
