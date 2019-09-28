@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Feature modules
 import { AuthModule } from './auth/auth.module';
+import { HealthModule } from './health/health.module';
 
 // Containers
 import { AppComponent } from './containers/app/app.component';
@@ -14,7 +15,7 @@ import { FmaNavComponent } from './components/fma-nav/fma-nav.component';
 
 @NgModule({
   declarations: [AppComponent, FmaHeaderComponent, FmaNavComponent],
-  imports: [BrowserModule, AuthModule, AppRoutingModule],
+  imports: [BrowserModule, AuthModule, HealthModule, AppRoutingModule],
   providers: [Store],
   bootstrap: [AppComponent]
 })
