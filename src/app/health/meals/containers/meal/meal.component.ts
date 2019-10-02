@@ -1,19 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   Meal,
-  MealsService
+  MealsService,
+  Meal_FSDoc
 } from 'src/app/health/shared/services/meals/meals.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription, Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'fma-meal',
   templateUrl: './meal.component.html',
   styleUrls: ['./meal.component.scss']
 })
-export class MealComponent implements OnInit {
-  constructor(private mealsService: MealsService, private router: Router) {}
+export class MealComponent implements OnInit, OnDestroy {
+  meal$: Observable<Meal_FSDoc | {}>;
+  subscription: Subscription;
 
-  ngOnInit() {}
+  constructor(
+    private mealsService: MealsService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit() {
+    this.subscription = this.mealsService.meals$.subscribe();
+    this.meal$ = this.route.params.pipe(
+      switchMap(param => {
+        return this.mealsService.getMeal(param.id);
+      })
+    );
+  }
 
   async addMeal(event: Meal) {
     await this.mealsService.addMeal(event);
@@ -22,5 +39,9 @@ export class MealComponent implements OnInit {
 
   backToMeals() {
     this.router.navigate(['meals']);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
