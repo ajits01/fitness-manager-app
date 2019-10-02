@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AngularFireModule, FirebaseAppConfig } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 // shared modules
 import { SharedModule } from './shared/shared.module';
@@ -34,7 +35,7 @@ export const firebaseConfig: FirebaseAppConfig = {
   authDomain: 'fitness-manager-app-8d32f.firebaseapp.com',
   databaseURL: 'https://fitness-manager-app-8d32f.firebaseio.com',
   projectId: 'fitness-manager-app-8d32f',
-  storageBucket: '',
+  storageBucket: 'fitness-manager-app-8d32f.appspot.com',
   messagingSenderId: '',
   appId: '',
   measurementId: ''
@@ -47,7 +48,8 @@ export const firebaseConfig: FirebaseAppConfig = {
     SharedModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFirestoreModule
   ],
   exports: [RouterModule]
 })
