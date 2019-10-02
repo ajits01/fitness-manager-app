@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meal } from 'src/app/health/shared/services/meals/meals.service';
 
 @Component({
   selector: 'fma-meal',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./meal.component.scss']
 })
 export class MealComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  addMeal(event: Meal) {
+    console.log('addMeal event: ', event);
   }
-
 }

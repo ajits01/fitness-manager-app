@@ -1,1 +1,11 @@
-<p>meal works!</p>
+<div class="meal">
+  <div class="meal__title">
+    <h1>
+      <img src="/assets/img/food.svg" alt="Food" />
+      <span>Create Meal</span>
+    </h1>
+  </div>
+  <div>
+    <fma-meal-form (create)="addMeal($event)"> </fma-meal-form>
+  </div>
+</div>
