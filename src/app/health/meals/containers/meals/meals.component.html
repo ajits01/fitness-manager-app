@@ -14,6 +14,12 @@
       <img src="/assets/img/face.svg" alt="No Meals" />
       No meals, add a new meal to start
     </div>
+    <fma-list-item
+      *ngFor="let meal of meals"
+      [item]="meal"
+      (remove)="removeMeal($event)"
+    >
+    </fma-list-item>
   </div>
   <ng-template #loading>
     <div class="message">

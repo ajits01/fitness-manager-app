@@ -47,4 +47,18 @@ export class MealsService {
   get uid() {
     return this.authService.user.uid;
   }
+
+  addMeal(meal: Meal) {
+    return this.db.collection(`user/${this.uid}/meals`).add({
+      ...meal,
+      timestamp: new Date().getTime()
+    });
+  }
+
+  removeMeal(key: string) {
+    return this.db
+      .collection(`user/${this.uid}/meals`)
+      .doc(key)
+      .delete();
+  }
 }
