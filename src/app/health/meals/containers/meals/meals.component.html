@@ -1,4 +1,24 @@
-<p>meals works!</p>
-<pre>
-  {{ meals$ | async | json }}
-</pre>
+<div class="meals">
+  <div class="meals__title">
+    <h1>
+      <img src="/assets/img/food.svg" alt="food" />
+      Your Meals
+    </h1>
+    <a [routerLink]="['../meals/new']" class="btn__add">
+      <img src="/assets/img/add-white.svg" alt="New Meal" />
+      New Meal
+    </a>
+  </div>
+  <div *ngIf="meals$ | async as meals; else loading">
+    <div class="message" *ngIf="!meals.length">
+      <img src="/assets/img/face.svg" alt="No Meals" />
+      No meals, add a new meal to start
+    </div>
+  </div>
+  <ng-template #loading>
+    <div class="message">
+      <img src="/assets/img/loading.svg" alt="Loading" />
+      Fetching Meals...
+    </div>
+  </ng-template>
+</div>
