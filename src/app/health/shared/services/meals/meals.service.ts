@@ -3,7 +3,7 @@ import { Store } from 'store';
 import { AuthService } from 'src/app/auth/shared/services/auth/auth.service';
 import { map, tap, filter } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable, EMPTY, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 export interface Meal_FSDoc {
   mealId: string;
@@ -65,6 +65,13 @@ export class MealsService {
       ...meal,
       timestamp: new Date().getTime()
     });
+  }
+
+  updateMeal(key: string, meal: Meal) {
+    return this.db
+      .collection(`user/${this.uid}/meals`)
+      .doc(key)
+      .update(meal);
   }
 
   removeMeal(key: string) {
