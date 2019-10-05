@@ -24,7 +24,7 @@ export class MealsComponent implements OnInit, OnDestroy {
   }
 
   removeMeal(event: Meal_FSDoc) {
-    this.mealsService.removeMeal(event.mealId);
+    this.mealsService.removeMeal(event.id);
   }
 
   ngOnDestroy() {
