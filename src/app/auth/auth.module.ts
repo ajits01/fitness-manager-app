@@ -41,9 +41,6 @@ export const firebaseConfig: FirebaseAppConfig = {
 };
 
 @NgModule({
-<<<<<<< HEAD
-  imports: [CommonModule, RouterModule.forChild(ROUTES), SharedModule]
-=======
   imports: [
     CommonModule,
     RouterModule.forChild(ROUTES),
@@ -53,6 +50,5 @@ export const firebaseConfig: FirebaseAppConfig = {
     AngularFireDatabaseModule
   ],
   exports: [RouterModule]
->>>>>>> 04-angularfire-integration
 })
 export class AuthModule {}
