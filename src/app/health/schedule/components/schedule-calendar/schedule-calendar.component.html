@@ -1,4 +1,7 @@
 <div class="calendar">
   <fma-schedule-controls [selected]="selectedDay" (move)="onChange($event)">
   </fma-schedule-controls>
+
+  <fma-schedule-days [selected]="selectedDayIndex" (select)="selectDay($event)">
+  </fma-schedule-days>
 </div>
