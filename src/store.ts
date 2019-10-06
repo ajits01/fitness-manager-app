@@ -8,13 +8,15 @@ export interface State {
   user: User;
   meals: Meal_FSDoc[];
   workouts: Workout_FSDoc[];
+  date: Date;
   [key: string]: any;
 }
 
 const state: State = {
   user: undefined,
   meals: undefined,
-  workouts: undefined
+  workouts: undefined,
+  date: undefined
 };
 
 export class Store {
