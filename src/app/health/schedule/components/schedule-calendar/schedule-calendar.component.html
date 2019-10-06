@@ -1,3 +1,4 @@
 <div class="calendar">
-  {{ date | json }}
+  <fma-schedule-controls [selected]="selectedDay" (move)="onChange($event)">
+  </fma-schedule-controls>
 </div>

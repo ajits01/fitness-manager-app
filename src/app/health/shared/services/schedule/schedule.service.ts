@@ -8,8 +8,14 @@ import { tap } from 'rxjs/operators';
 })
 export class ScheduleService {
   private date$ = new BehaviorSubject(new Date());
+
   schedule$: Observable<any[]> = this.date$
     .asObservable()
     .pipe(tap((next: any) => this.store.set('date', next)));
+
   constructor(private store: Store) {}
+
+  updateDate(date: Date) {
+    this.date$.next(date);
+  }
 }
