@@ -1,0 +1,11 @@
+<div class="app-header">
+  <div class="wrapper">
+    <div>
+      <img src="assets/img/running.svg" alt="Logo" height="25" />
+      <span class="logo-text">Fitness Manager</span>
+    </div>
+    <div class="app-header__user-info" *ngIf="user?.authenticated">
+      <span class="logout" (click)="logoutUser()"></span>
+    </div>
+  </div>
+</div>

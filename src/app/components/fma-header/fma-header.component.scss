@@ -1,0 +1,45 @@
+.app-header {
+  background: #fff;
+  border-bottom: 1px solid #c1cedb;
+  padding: 15px 0;
+  text-align: center;
+  img {
+    display: inline-block;
+  }
+  &__user-info {
+    position: absolute;
+    top: 16px;
+    right: 0;
+    cursor: pointer;
+  }
+  span.logout {
+    background: url(/assets/img/logout.svg) no-repeat;
+    background-size: contain;
+    width: 24px;
+    height: 24px;
+    display: block;
+    opacity: 0.4;
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+  span.logo-text {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1.5em;
+    width: max-content;
+    margin-left: 0.5em;
+    opacity: 1;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.wrapper {
+  max-width: 800px;
+  width: 96%;
+  margin: 0 auto;
+  position: relative;
+}
