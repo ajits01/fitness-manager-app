@@ -4,4 +4,12 @@
 
   <fma-schedule-days [selected]="selectedDayIndex" (select)="selectDay($event)">
   </fma-schedule-days>
+
+  <fma-schedule-section
+    *ngFor="let section of sections"
+    [name]="section.name"
+    [section]="getSection(section.key)"
+    (select)="selectSection($event, section.key)"
+  >
+  </fma-schedule-section>
 </div>

@@ -7,6 +7,10 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
+import {
+  ScheduleItem,
+  ScheduleList
+} from 'src/app/health/shared/services/schedule/schedule.service';
 
 @Component({
   selector: 'fma-schedule-calendar',
@@ -18,12 +22,26 @@ export class ScheduleCalendarComponent implements OnInit, OnChanges {
   selectedDay: Date;
   selectedWeek: Date;
 
+  sections = [
+    { key: 'morning', name: 'Morning' },
+    { key: 'lunch', name: 'Lunch' },
+    { key: 'evening', name: 'Evening' },
+    { key: 'snacks', name: 'Snacks and Drinks' }
+  ];
+
   @Input()
   set date(date: Date) {
     this.selectedDay = new Date(date.getTime());
   }
+
+  @Input()
+  items: ScheduleList;
+
   @Output()
   change = new EventEmitter<Date>();
+
+  @Output()
+  select = new EventEmitter<any>();
 
   constructor() {}
 
@@ -32,6 +50,21 @@ export class ScheduleCalendarComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.selectedDayIndex = this.getToday(this.selectedDay);
     this.selectedWeek = this.getStartOfWeek(new Date(this.selectedDay));
+  }
+
+  getSection(name: string): ScheduleItem {
+    return (this.items && this.items[name]) || {};
+  }
+
+  selectSection({ type, assigned, data }: any, section: string) {
+    const day = this.selectedDay;
+    this.select.emit({
+      type,
+      assigned,
+      section,
+      day,
+      data
+    });
   }
 
   selectDay(index: number) {

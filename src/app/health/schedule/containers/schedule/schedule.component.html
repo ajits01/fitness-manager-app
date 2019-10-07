@@ -1,6 +1,17 @@
 <div class="schedule">
   <fma-schedule-calendar
     [date]="date$ | async"
+    [items]="schedule$ | async"
     (change)="changeDate($event)"
+    (select)="changeSection($event)"
   ></fma-schedule-calendar>
+
+  <fma-schedule-assign
+    *ngIf="open"
+    [section]="selected$ | async"
+    [list]="list$ | async"
+    (update)="assignItem($event)"
+    (cancel)="closeAssign()"
+  >
+  </fma-schedule-assign>
 </div>
