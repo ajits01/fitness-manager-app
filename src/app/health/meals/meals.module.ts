@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 // containers
 import { MealsComponent } from './containers/meals/meals.component';
 import { MealComponent } from './containers/meal/meal.component';
+import { MealFormComponent } from './components/meal-form/meal-form.component';
 
 export const ROUTES: Routes = [
   { path: '', component: MealsComponent },
@@ -16,7 +17,7 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [MealsComponent, MealComponent],
+  declarations: [MealsComponent, MealComponent, MealFormComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
