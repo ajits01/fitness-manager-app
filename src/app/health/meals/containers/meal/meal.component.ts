@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Meal } from 'src/app/health/shared/services/meals/meals.service';
+import {
+  Meal,
+  MealsService
+} from 'src/app/health/shared/services/meals/meals.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'fma-meal',
@@ -7,11 +11,16 @@ import { Meal } from 'src/app/health/shared/services/meals/meals.service';
   styleUrls: ['./meal.component.scss']
 })
 export class MealComponent implements OnInit {
-  constructor() {}
+  constructor(private mealsService: MealsService, private router: Router) {}
 
   ngOnInit() {}
 
-  addMeal(event: Meal) {
-    console.log('addMeal event: ', event);
+  async addMeal(event: Meal) {
+    await this.mealsService.addMeal(event);
+    this.backToMeals();
+  }
+
+  backToMeals() {
+    this.router.navigate(['meals']);
   }
 }
