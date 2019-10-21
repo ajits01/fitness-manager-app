@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Store } from 'store';
 import { AuthService } from 'src/app/auth/shared/services/auth/auth.service';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, filter } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, EMPTY, of } from 'rxjs';
 
 export interface Meal_FSDoc {
   mealId: string;
@@ -46,6 +46,18 @@ export class MealsService {
 
   get uid() {
     return this.authService.user.uid;
+  }
+
+  getMeal(key: string) {
+    if (!key) {
+      return of({});
+    }
+    return this.store.select<Meal_FSDoc[]>('meals').pipe(
+      filter(Boolean),
+      map((meals: Meal_FSDoc[]) =>
+        meals.find((meal: Meal_FSDoc) => meal.mealId === key)
+      )
+    );
   }
 
   addMeal(meal: Meal) {
