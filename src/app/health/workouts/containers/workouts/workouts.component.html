@@ -1,1 +1,30 @@
-<p>workouts works!</p>
+<div class="workouts">
+  <div class="workouts__title">
+    <h1>
+      <img src="/assets/img/food.svg" alt="food" />
+      Your Workouts
+    </h1>
+    <a [routerLink]="['../workouts/new']" class="btn__add">
+      <img src="/assets/img/add-white.svg" alt="New Workout" />
+      New Workout
+    </a>
+  </div>
+  <div *ngIf="workouts$ | async as workouts; else loading">
+    <div class="message" *ngIf="!workouts.length">
+      <img src="/assets/img/face.svg" alt="No Workouts" />
+      No workouts, add a new workout to start
+    </div>
+    <fma-list-item
+      *ngFor="let workout of workouts"
+      [item]="workout"
+      (remove)="removeWorkout($event)"
+    >
+    </fma-list-item>
+  </div>
+  <ng-template #loading>
+    <div class="message">
+      <img src="/assets/img/loading.svg" alt="Loading" />
+      Fetching Workouts...
+    </div>
+  </ng-template>
+</div>

@@ -26,7 +26,7 @@ export class ListItemComponent implements OnInit {
   ngOnInit() {}
 
   getRoute(item: any) {
-    return [`../meals`, this.item.mealId];
+    return [`../meals`, this.item.id];
   }
 
   toggle() {

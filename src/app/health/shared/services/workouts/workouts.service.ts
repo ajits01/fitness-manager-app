@@ -5,37 +5,41 @@ import { map, tap, filter } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 
-export interface Meal_FSDoc {
+export interface Workout_FSDoc {
   id: string;
   name: string;
-  ingredients: string[];
+  type: string;
+  strength: any;
+  endurance: any;
   exists: boolean;
   timestamp: number;
 }
 
-export interface Meal {
+export interface Workout {
   name: string;
-  ingredients: string[];
+  type: string;
+  strength: any;
+  endurance: any;
   timestamp: number;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class MealsService {
-  meals$: Observable<Meal_FSDoc[]> = this.db
-    .collection<Meal_FSDoc>(`user/${this.uid}/meals`)
+export class WorkoutsService {
+  workouts$: Observable<Workout_FSDoc[]> = this.db
+    .collection<Workout_FSDoc>(`user/${this.uid}/workouts`)
     .snapshotChanges()
     .pipe(
       map(actions =>
         actions.map(a => {
-          const data = a.payload.doc.data() as Meal;
+          const data = a.payload.doc.data() as Workout;
           const id = a.payload.doc.id;
           const exists = a.payload.doc.exists;
-          return { id, exists, ...data };
+          return { exists, ...data, id };
         })
       ),
-      tap(data => this.store.set(`meals`, data))
+      tap(data => this.store.set(`workouts`, data))
     );
 
   constructor(
@@ -48,35 +52,35 @@ export class MealsService {
     return this.authService.user.uid;
   }
 
-  getMeal(key: string) {
+  getWorkout(key: string) {
     if (!key) {
       return of({});
     }
-    return this.store.select<Meal_FSDoc[]>('meals').pipe(
+    return this.store.select<Workout_FSDoc[]>('workouts').pipe(
       filter(Boolean),
-      map((meals: Meal_FSDoc[]) =>
-        meals.find((meal: Meal_FSDoc) => meal.id === key)
+      map((workouts: Workout_FSDoc[]) =>
+        workouts.find((workout: Workout_FSDoc) => workout.id === key)
       )
     );
   }
 
-  addMeal(meal: Meal) {
-    return this.db.collection(`user/${this.uid}/meals`).add({
-      ...meal,
+  addWorkout(workout: Workout) {
+    return this.db.collection(`user/${this.uid}/workouts`).add({
+      ...workout,
       timestamp: new Date().getTime()
     });
   }
 
-  updateMeal(key: string, meal: Meal) {
+  updateWorkout(key: string, workout: Workout) {
     return this.db
-      .collection(`user/${this.uid}/meals`)
+      .collection(`user/${this.uid}/workouts`)
       .doc(key)
-      .update(meal);
+      .update(workout);
   }
 
-  removeMeal(key: string) {
+  removeWorkout(key: string) {
     return this.db
-      .collection(`user/${this.uid}/meals`)
+      .collection(`user/${this.uid}/workouts`)
       .doc(key)
       .delete();
   }
